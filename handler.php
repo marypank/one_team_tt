@@ -32,7 +32,7 @@ function calculateRounds(array $file): string
     setHostFlagsToTeams($data);
 
     for ($r = 0; $r < ROUNDS; $r++) {
-        // todo: вернуть shuffle($data);
+        shuffle($data);
 
         $homeTeam = $data;
         $fosterTeam = array_splice($homeTeam, $teamCounts/2);
@@ -71,7 +71,7 @@ function getDataFromFile(array $file): array
     if (!$file || $file['error'] !== UPLOAD_ERR_OK) {
         return [];
     }
-    $data = file_get_contents($file['name']);
+    $data = file_get_contents($file['tmp_name']);
     $data = json_decode($data, true);
     $data = $data['teams'] ?? [];
 

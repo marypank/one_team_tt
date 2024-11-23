@@ -3,6 +3,9 @@ $('#sendDataBtn').on('click', function() {
     var formData = new FormData();                  
     formData.append('teamsFile', fileData);
 
+    var tableBlock = $('.tableBlock');
+    tableBlock.empty();
+
     $('#errorMessage').hide();
     $.ajax({
         type: 'POST',
@@ -18,20 +21,35 @@ $('#sendDataBtn').on('click', function() {
         success: function(response) {
             var data = JSON.parse(response);
             if (data.error !== null) {
-                console.log('empty error');
                 $('#errorMessage').show();
                 $('#errorMessage').text(data.error);
             } else {
                 data = data.data;
                 $.each(data, function(key, value) {
-                    console.log(key)
-                    console.log(value)
-                    var tableBlock = $('.table');
+                    tableBlock.append('<h1 class="display-6">Календарь матчей</h1>');
+                    $.each(value, function(key2, item) {
+                        var tDiv = $('<div>');
+                        tDiv.append('<p class="text-success h5">' + 'Круг №' + (key+1) + ', тур №' + (key2) + '</p');
+
+                        var table = $('<table>').addClass('table');
+                        var thead = $('<thead>').append('<tr><th scope="col" class="col-2">№</th><th scope="col" class="col-4">Хозяева</th><th scope="col" class="col-2">###</th><th scope="col" class="col-4">Гости</th></tr>');
+                        table.append(thead);
+
+                        var tbody = $('<tbody>');
+                        $.each(item, function(key3, team) {
+                            tbody.append('<tr><td>' + (key3 + 1) + '</td><td>' + team['home'] + '</td><td>###</td><td>' + team['foster'] + '</td></tr>');
+                        });
+                        table.append(tbody);
+
+                        tDiv.append(table);
+
+                        tableBlock.append(tDiv);
+                    });
+
+                    tableBlock.show();
                 });
             }
             $('#sendDataBtn').prop('disabled', false);
         }
     });
-
-    //
 });
