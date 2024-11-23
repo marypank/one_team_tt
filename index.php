@@ -6,26 +6,65 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>One Team Calculator</title>
+    <title>One Team Календарь Генератор</title>
   </head>
   <body>
     <div class="container vh-100">
         <div class="row align-items-center py-4">
             <h5>Генерация календаря футбольного чемпионата на один сезон</h5>
-            <!-- -->
-            <form action="handler.php" method="POST" id="generate-form" enctype="multipart/form-data">
+            <form action="#" method="POST" id="generate-form" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="teamsFile" class="form-label">Загрузите список команд (в формате json)</label>
                     <input class="form-control" type="file" id="teamsFile" name="teamsFile">
                 </div>
-                <button type="submit" id="sendData" name="sendDataBtn" class="btn btn-primary">Снегерировать</button>
-                <!-- todo: удалить submit, когда на jquery переделывать буду и вставить эту <button type="button" id="sendData" name="sendDataBtn" class="btn btn-primary">Снегерировать</button> -->
+                <button type="button" id="sendDataBtn" name="sendDataBtn" class="btn btn-primary">Снегерировать</button>
             </form>
-            <div class="alert alert-warning" id="errorMessage" style="display: none;"></div>
+            <div class="alert alert-danger my-1" id="errorMessage" style="display: none;"></div>
         </div>
-        <div style="display: none;">
-            <!-- table view -->
-            <h5>Место таблицы</h5>
+        <div style="display: none;" class="table">
+            <h1 class="display-6">Календарь матчей</h1>
+            <div>
+                <p class="text-success h5">Тур 1</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Хозяева</th>
+                            <th scope="col">---</th>
+                            <th scope="col">Гости</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Лестер Сити</td>
+                            <td>###</td>
+                            <td>Ливерпул</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <p class="text-success h5">Тур 2</p>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Хозяева</th>
+                            <th scope="col">---</th>
+                            <th scope="col">Гости</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Лестер Сити</td>
+                            <td>###</td>
+                            <td>Ливерпул</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
